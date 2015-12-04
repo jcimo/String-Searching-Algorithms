@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -18,19 +19,23 @@ using namespace std;
 // MAIN METHOD
 int main(void) {
     
-    string base = "kabcjhdflkabcjhdf";
-    string key = "abc";
-    cout.flush();
+    string base = "aaaaaaabkjdshflkajhfdabcdlkjhasldkfjh";
+    string key = "abcd";
     
+    clock_t naive_begin_timer = clock();
     vector<int> x = naive_search(base,key);
-    vector<int> y = kmp_search(base,key);
+    float naive_time = clock() - naive_begin_timer;
     
-    cout << "Naive:" << endl;
+    clock_t kmp_begin_timer = clock();
+    vector<int> y = kmp_search(base,key);
+    float kmp_time = clock() - kmp_begin_timer;
+    
+    cout << "Naive: " << naive_time << endl;
     for (int i = 0; i < x.size(); i++) {
         cout << x[i] << " ";
     } cout << endl;
     
-    cout << "KMP:" << endl;
+    cout << "KMP: " << kmp_time << endl;
     for (int i = 0; i < y.size(); i++) {
         cout << y[i] << " ";
     } cout << endl;
