@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -17,19 +18,12 @@ using namespace std;
 // MAIN METHOD
 int main(void) {
     
-    int a = naive_search("hello", "el");
-    int b = naive_search("hello", "o");
-    int c = naive_search("apple", "banana");
-    int d = naive_search("apple", "xy");
-    int e = naive_search("abcdefghijklmnopqrst", "hijklmnop");
-    int f = naive_search("abcdefghijklmnopqrst", "");
+    vector<int> x = kmp_search("a","a");
     
-    cout << a << endl;
-    cout << b << endl;
-    cout << c << endl;
-    cout << d << endl;
-    cout << e << endl;
-    cout << f << endl;
+    cout << "test:" << endl;
+    for (int i = 0; i < x.size(); i++) {
+        cout << x[i] << endl;
+    }
     
     return 0;
 }
