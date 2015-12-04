@@ -1,5 +1,4 @@
 # String-Searching-Algorithms
----
 *Project by Jerry Cimo and Michael Roefs*
 
 An implementation and analysis of popular [string searching algorithms] using C++:
