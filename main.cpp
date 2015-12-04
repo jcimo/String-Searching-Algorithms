@@ -18,12 +18,22 @@ using namespace std;
 // MAIN METHOD
 int main(void) {
     
-    vector<int> x = kmp_search("a","a");
+    string base = "kabcjhdflkabcjhdf";
+    string key = "abc";
+    cout.flush();
     
-    cout << "test:" << endl;
+    vector<int> x = naive_search(base,key);
+    vector<int> y = kmp_search(base,key);
+    
+    cout << "Naive:" << endl;
     for (int i = 0; i < x.size(); i++) {
-        cout << x[i] << endl;
-    }
+        cout << x[i] << " ";
+    } cout << endl;
+    
+    cout << "KMP:" << endl;
+    for (int i = 0; i < y.size(); i++) {
+        cout << y[i] << " ";
+    } cout << endl;
     
     return 0;
 }

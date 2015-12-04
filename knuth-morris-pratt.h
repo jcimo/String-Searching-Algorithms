@@ -24,7 +24,7 @@ vector<int> kmp_search(string base_str, string key_str) {
         // PART 1: CREATE KMP TABLE
         // =============================================================
         
-        vector<int> T(key_length); // KMP table of size = length of key
+        vector<int> T(key_length+1); // KMP table of size = length of key
         
         int pos = 2; // index (position) in T we are computing
         int cnd = 0; // index of the key string of the next

@@ -8,10 +8,12 @@
 //
 // return -1 if key string is not in base string
 
-int naive_search(string base_str, string key_str) {
+vector<int> naive_search(string base_str, string key_str) {
     
     // base string index
     int i = 0;
+    
+    vector<int> finds;
     
     int base_length = base_str.length();
     int key_length = key_str.length();
@@ -45,16 +47,13 @@ int naive_search(string base_str, string key_str) {
             }
             
             // if the key was found
-            if (sub_search) { search = false; }
+            if (sub_search) { finds.push_back(i); }
             
             // increment base string index
             i++;
         }
         
-        // adjust index for search conclusion
-        // -1 for not found, else -1 for index adjusment
-        if (search) { i = -1; } else { i--; }
     }
     
-    return i;
+    return finds;
 }
