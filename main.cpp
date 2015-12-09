@@ -26,7 +26,17 @@ int main(int argc, char* argv[]) {
         cout << "Expected filename as command line parameter. Exiting." << endl; 
         exit(0);
     }
-    string inputfile = argv[1]; 
+    string key, base; 
+    string inputfile = argv[1];
+    ifstream input(inputfile.c_str()); 
+    while(getline(input,line)){
+        if(lineCount == 0){
+            key = line;
+            lineCount++;
+        }else{
+            base = base + line; 
+        }
+    }
 
     //boyer-moore call. File i/o handled in other file 
     clock_t bm_begin_timer = clock(); 
@@ -35,8 +45,8 @@ int main(int argc, char* argv[]) {
 
 
 
-    string base = "aaaaaaabkjdshflkajhfdabcdlkjhasldkfjh";
-    string key = "abcd";
+    // string base = "aaaaaaabkjdshflkajhfdabcdlkjhasldkfjh";
+    // string key = "abcd";
     
     clock_t naive_begin_timer = clock();
     vector<int> x = naive_search(base,key);
