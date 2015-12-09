@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -17,8 +18,23 @@ using namespace std;
 #include "knuth-morris-pratt.h"
 
 // MAIN METHOD
-int main(void) {
+int main(int argc, char* argv[]) {
     
+    //Read file name from command line. Error checked for command line args
+    //Expecting first line of input file to be search key, rest of file is base string
+    if(argc > 2 || argc < 2){
+        cout << "Expected filename as command line parameter. Exiting." << endl; 
+        exit(0);
+    }
+    string inputfile = argv[1]; 
+
+    //boyer-moore call. File i/o handled in other file 
+    clock_t bm_begin_timer = clock(); 
+    vector<int> bm = boyer_moore_search(inputfile); 
+    float bm_time = clock() - bm_begin_timer;
+
+
+
     string base = "aaaaaaabkjdshflkajhfdabcdlkjhasldkfjh";
     string key = "abcd";
     
@@ -29,6 +45,7 @@ int main(void) {
     clock_t kmp_begin_timer = clock();
     vector<int> y = kmp_search(base,key);
     float kmp_time = clock() - kmp_begin_timer;
+
     
     cout << "Naive: " << naive_time << endl;
     for (int i = 0; i < x.size(); i++) {
@@ -39,6 +56,11 @@ int main(void) {
     for (int i = 0; i < y.size(); i++) {
         cout << y[i] << " ";
     } cout << endl;
+
+    cout<< "BM: " << bm_time << endl; 
+    for(int i = 0; i < bm.size(); i++){
+        cout << bm[i] << " ";
+    }cout << endl;
     
     return 0;
 }
