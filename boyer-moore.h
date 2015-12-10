@@ -59,7 +59,7 @@ vector<int> boyer_moore_search(string base, string key) {
 		//if the pattern is found, then keyIndex should be -1. add it to the vector
 		if(keyIndex < 0){
 			cout << "Got it! " << " shiftIndex: " << shiftIndex << " keyIndex: " << keyIndex << endl;
-				finds.push_back(shiftIndex+1);
+				finds.push_back(shiftIndex);
 
 			//shift to line up the next char in base lines up with the last occurence in the key
 			//must check to see if we found the pattern at the end of the text 
