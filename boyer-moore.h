@@ -38,19 +38,19 @@ void fillBadChar(string key, int keyLength, int badCharTable[NUM_CHARS]){
 
 vector<int> boyer_moore_search(string key, string base) {
     vector<int> finds; //indexes where key is found 
-    string base, key, line; 
-    // Dealing with input/output below 
-    ifstream input(inputfile.c_str());
-    int lineCount = 0; 
-    if(input.is_open()){
-    	while(getline(input,line)){
-    		if(lineCount == 0){
-    			key = line;
-    			lineCount++;
-    		}else{
-    			base = base + line; 
-    		}
-    	}
+    // string base, key, line; 
+    // //Dealing with input/output below 
+    // ifstream input(inputfile.c_str());
+    // int lineCount = 0; 
+    // if(input.is_open()){
+    // 	while(getline(input,line)){
+    // 		if(lineCount == 0){
+    // 			key = line;
+    // 			lineCount++;
+    // 		}else{
+    // 			base = base + line; 
+    // 		}
+    // 	}
 
 	//Time to actually do the search 
 
