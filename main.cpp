@@ -20,51 +20,60 @@ using namespace std;
 // MAIN METHOD
 int main(int argc, char* argv[]) {
     
-    //Read file name from command line. Error checked for command line args
-    //Expecting first line of input file to be search key, rest of file is base string
-    if(argc > 2 || argc < 2){
-        cout << "Expected filename as command line parameter. Exiting." << endl; 
+    // Check command line arguments
+    if(argc > 2 || argc < 2) {
+        cout << "ERROR: Please provide input file" << endl;
         exit(0);
     }
     
-    string key, base; 
+    // initialize strings for search
+    string key, base;
+    
+    // prepare for file read
     string inputfile = argv[1];
-    ifstream input(inputfile.c_str()); 
-    int lineCount = 0; 
-    while(getline(input,line)){
-        if(lineCount == 0){
+    ifstream input(inputfile.c_str());
+    
+    // read input file
+    int lineCount = 0;
+    while(getline(input,line)) {
+        if( lineCount == 0 ){
             key = line;
             lineCount++;
         } else {
-            base = base + line; 
+            base = base + line;
         }
     }
-
+    
+    // Brute Force Implementation
     clock_t naive_begin_timer = clock();
-    vector<int> x = naive_search(base,key);
+    vector<int> naive = naive_search(base,key);
     float naive_time = clock() - naive_begin_timer;
     
+    // Boyer-Moore Implementation
     clock_t bm_begin_timer = clock(); 
     vector<int> bm = boyer_moore_search(base,key);
     float bm_time = clock() - bm_begin_timer;
     
+    // Knuth-Morris-Pratt Implementation
     clock_t kmp_begin_timer = clock();
-    vector<int> y = kmp_search(base,key);
+    vector<int> kmp = kmp_search(base,key);
     float kmp_time = clock() - kmp_begin_timer;
-
-    cout << "Naive: " << naive_time << endl;
+    
+    string time_unit = " sec";
+    
+    cout << "NAIVE:\t" << ( (float) naive_time ) / CLOCKS_PER_SECOND << time_unit << endl;
     for (int i = 0; i < x.size(); i++) {
-        cout << x[i] << " ";
+        cout << naive[i] << " ";
     } cout << endl;
     
-    cout<< "BM: " << bm_time << endl;
+    cout<< "BM:\t" << ( (float) bm_time ) / CLOCKS_PER_SECOND << time_unit << endl;
     for(int i = 0; i < bm.size(); i++){
         cout << bm[i] << " ";
-    }cout << endl;
+    } cout << endl;
     
-    cout << "KMP: " << kmp_time << endl;
+    cout << "KMP:\t" << ( (float) kmp_time ) / CLOCKS_PER_SECOND << time_unit << endl;
     for (int i = 0; i < y.size(); i++) {
-        cout << y[i] << " ";
+        cout << kmp[i] << " ";
     } cout << endl;
     
     return 0;
