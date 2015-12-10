@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
         cout << "Expected filename as command line parameter. Exiting." << endl; 
         exit(0);
     }
+    
     string key, base; 
     string inputfile = argv[1];
     ifstream input(inputfile.c_str()); 
@@ -34,44 +35,37 @@ int main(int argc, char* argv[]) {
         if(lineCount == 0){
             key = line;
             lineCount++;
-        }else{
+        } else {
             base = base + line; 
         }
     }
 
-    //boyer-moore call. File i/o handled in other file 
-    clock_t bm_begin_timer = clock(); 
-    vector<int> bm = boyer_moore_search(inputfile); 
-    float bm_time = clock() - bm_begin_timer;
-
-
-
-    // string base = "aaaaaaabkjdshflkajhfdabcdlkjhasldkfjh";
-    // string key = "abcd";
-    
     clock_t naive_begin_timer = clock();
     vector<int> x = naive_search(base,key);
     float naive_time = clock() - naive_begin_timer;
+    
+    clock_t bm_begin_timer = clock(); 
+    vector<int> bm = boyer_moore_search(base,key);
+    float bm_time = clock() - bm_begin_timer;
     
     clock_t kmp_begin_timer = clock();
     vector<int> y = kmp_search(base,key);
     float kmp_time = clock() - kmp_begin_timer;
 
-    
     cout << "Naive: " << naive_time << endl;
     for (int i = 0; i < x.size(); i++) {
         cout << x[i] << " ";
     } cout << endl;
     
+    cout<< "BM: " << bm_time << endl;
+    for(int i = 0; i < bm.size(); i++){
+        cout << bm[i] << " ";
+    }cout << endl;
+    
     cout << "KMP: " << kmp_time << endl;
     for (int i = 0; i < y.size(); i++) {
         cout << y[i] << " ";
     } cout << endl;
-
-    cout<< "BM: " << bm_time << endl; 
-    for(int i = 0; i < bm.size(); i++){
-        cout << bm[i] << " ";
-    }cout << endl;
     
     return 0;
 }
