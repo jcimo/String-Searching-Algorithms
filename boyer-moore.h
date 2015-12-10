@@ -36,7 +36,7 @@ void fillBadChar(string key, int keyLength, int badCharTable[NUM_CHARS]){
 	cout << endl;
 }
 
-vector<int> boyer_moore_search(string key, string base) {
+vector<int> boyer_moore_search(string base, string key) {
     vector<int> finds; //indexes where key is found 
 	int baseLength = base.length();
 	int keyLength = key.length(); 
