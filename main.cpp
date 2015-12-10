@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
     string key, base; 
     string inputfile = argv[1];
     ifstream input(inputfile.c_str()); 
+    int lineCount = 0; 
     while(getline(input,line)){
         if(lineCount == 0){
             key = line;
