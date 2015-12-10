@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
     string key, base;
     
     // prepare for file read
+    string line;
     string inputfile = argv[1];
     ifstream input(inputfile.c_str());
     
@@ -59,22 +60,23 @@ int main(int argc, char* argv[]) {
     vector<int> kmp = kmp_search(base,key);
     float kmp_time = clock() - kmp_begin_timer;
     
-    string time_unit = " sec";
+    string time_unit = " us";
+    int time_factor = 1000000;
     
-    cout << "NAIVE:\t" << ( (float) naive_time ) / CLOCKS_PER_SECOND << time_unit << endl;
-    for (int i = 0; i < x.size(); i++) {
+    cout << "NAIVE:\t" << ( (float) naive_time ) * time_factor / CLOCKS_PER_SEC << time_unit << endl;
+    for (int i = 0; i < naive.size(); i++) {
         cout << naive[i] << " ";
-    } cout << endl;
+    } cout << endl << endl;
     
-    cout<< "BM:\t" << ( (float) bm_time ) / CLOCKS_PER_SECOND << time_unit << endl;
+    cout<< "BM:\t" << ( (float) bm_time ) * time_factor / CLOCKS_PER_SEC << time_unit << endl;
     for(int i = 0; i < bm.size(); i++){
         cout << bm[i] << " ";
-    } cout << endl;
+    } cout << endl << endl;
     
-    cout << "KMP:\t" << ( (float) kmp_time ) / CLOCKS_PER_SECOND << time_unit << endl;
-    for (int i = 0; i < y.size(); i++) {
+    cout << "KMP:\t" << ( (float) kmp_time ) * time_factor / CLOCKS_PER_SEC << time_unit << endl;
+    for (int i = 0; i < kmp.size(); i++) {
         cout << kmp[i] << " ";
-    } cout << endl;
+    } cout << endl << endl;
     
     return 0;
 }
