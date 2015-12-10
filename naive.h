@@ -39,6 +39,8 @@ vector<int> naive_search(string base_str, string key_str) {
                 if (i+j < base_length) {
                     if (base_str[i+j] != key_str[j]) {
                         sub_search = false;
+                    } else if (i+key_length > base_length) {
+                        sub_search = false;
                     }
                 }
                 
