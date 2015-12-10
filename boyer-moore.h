@@ -29,11 +29,11 @@ void fillBadChar(string key, int keyLength, int badCharTable[NUM_CHARS]){
 		badCharTable[ (int)key[i] ] = i; 
 	}
 
-	cout << "badCharTable: ";
-	for(int i = 0; i < keyLength; i++){
-		cout << badCharTable[i] << " ";
-	}
-	cout << endl;
+	// cout << "badCharTable: ";
+	// for(int i = 0; i < keyLength; i++){
+	// 	cout << badCharTable[i] << " ";
+	// }
+	// cout << endl;
 }
 
 vector<int> boyer_moore_search(string base, string key) {
@@ -41,15 +41,15 @@ vector<int> boyer_moore_search(string base, string key) {
 	int baseLength = base.length();
 	int keyLength = key.length(); 
 	int badCharTable[NUM_CHARS]; 
-	cout << "Key: " << key << endl; 
-	cout << "Base: " << base << endl;
+	// cout << "Key: " << key << endl; 
+	// cout << "Base: " << base << endl;
 	int shiftIndex = 0; //location of the match
 
 	//fill the badCharTable 
 	fillBadChar(key, keyLength, badCharTable);
 
 	while(shiftIndex <= (baseLength - keyLength)){
-		cout << "shiftIndex: " << shiftIndex << endl;
+		// cout << "shiftIndex: " << shiftIndex << endl;
 		int keyIndex = keyLength - 1; //start at the end 
 		//keep searching backwards, checking that the characters line up 
 		while(keyIndex >= 0 && key[keyIndex] == base[keyIndex + shiftIndex]){
@@ -58,7 +58,7 @@ vector<int> boyer_moore_search(string base, string key) {
 			
 		//if the pattern is found, then keyIndex should be -1. add it to the vector
 		if(keyIndex < 0){
-			cout << "Got it! " << " shiftIndex: " << shiftIndex << " keyIndex: " << keyIndex << endl;
+			// cout << "Got it! " << " shiftIndex: " << shiftIndex << " keyIndex: " << keyIndex << endl;
 				finds.push_back(shiftIndex);
 
 			//shift to line up the next char in base lines up with the last occurence in the key
@@ -67,6 +67,7 @@ vector<int> boyer_moore_search(string base, string key) {
 		}else {
 			//shift so the bad character (not matched) aligns with the last occurence in the key
 			//max is used to ensure we shift in the right direction
+			cout <<
 			shiftIndex += max(1, keyIndex - badCharTable[base[shiftIndex + keyIndex]]); 
 		}	
 	}
