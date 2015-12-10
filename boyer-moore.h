@@ -67,7 +67,7 @@ vector<int> boyer_moore_search(string base, string key) {
 		}else {
 			//shift so the bad character (not matched) aligns with the last occurence in the key
 			//max is used to ensure we shift in the right direction
-			cout <<
+			
 			shiftIndex += max(1, keyIndex - badCharTable[base[shiftIndex + keyIndex]]); 
 		}	
 	}
